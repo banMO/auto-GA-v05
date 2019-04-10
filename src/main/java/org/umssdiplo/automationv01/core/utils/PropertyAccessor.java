@@ -59,9 +59,11 @@ public class PropertyAccessor {
 
     public String getUser() {
         return getDataProperty(USER_NAME);
+//        return null;
     }
 
     public String getPassword() {
         return getDataProperty(PASSWORD);
+//        return null;
     }
 }

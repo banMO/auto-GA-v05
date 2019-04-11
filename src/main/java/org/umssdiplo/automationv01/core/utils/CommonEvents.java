@@ -1,10 +1,8 @@
 package org.umssdiplo.automationv01.core.utils;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.umssdiplo.automationv01.core.customwebdriver.ManageDriver;
 
 import java.util.List;
@@ -116,4 +114,20 @@ public class CommonEvents {
         webElement.sendKeys(Keys.ENTER);
     }
 
+    public static void waitWebElementVisible(WebElement containerDialog) {
+        ManageDriver.getInstance().getWebDriverWait().until(ExpectedConditions.visibilityOf(containerDialog));
+    }
+
+    public static void setSelectValue(WebElement webElement, String content) {
+        WebDriverWait waitDriver = ManageDriver.getInstance().getWebDriverWait();
+        WebDriver webDriver = ManageDriver.getInstance().getWebDriver();
+
+        waitDriver.until(ExpectedConditions.visibilityOf(webElement));
+        webElement.click();
+
+        WebElement selectItem = webDriver.findElement(By.xpath(
+                "//span[@class='mat-option-text'] [contains(text(),'" + content +"')]"));
+        waitDriver.until(ExpectedConditions.visibilityOf(selectItem));
+        selectItem.click();
+    }
 }

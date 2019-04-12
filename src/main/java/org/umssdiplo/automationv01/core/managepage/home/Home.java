@@ -17,6 +17,12 @@ public class Home extends BasePage {
     @FindBy(name="addm")
     private WebElement plusIcon;
 
+    @FindBy(xpath = "/html/body/app-root/app-machineries/table/tbody/tr[3]/mat-cell/button[1]")
+    private WebElement editIcon;
+
+    @FindBy(xpath = "/html/body/app-root/app-machineries/table/tbody/tr[3]/mat-cell/button[2]")
+    private WebElement deleteIcon;
+
     public void clickMachineriesOption() {
         CommonEvents.jsClickElement(machineriesOption);
     }
@@ -35,5 +41,16 @@ public class Home extends BasePage {
         MachineryDialog currentCreateDialog = new MachineryDialog();
         currentCreateDialog.setAllFields(machinery);
         return currentCreateDialog;
+    }
+
+    public MachineryDialog clickEditIcon(String descriptionValue) {
+        CommonEvents.clickButton(editIcon);
+        MachineryDialog currentCreateDialog = new MachineryDialog();
+        currentCreateDialog.update(descriptionValue);
+        return currentCreateDialog;
+    }
+
+    public void clickDeleteIcon() {
+        CommonEvents.clickButton(deleteIcon);
     }
 }

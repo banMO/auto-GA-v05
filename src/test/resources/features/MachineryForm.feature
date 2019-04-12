@@ -20,3 +20,17 @@ Feature: Machinery form
   Examples:
     |Machinary Name   |                             Description                            | Stock | Modelo | Marca |   Type   | Categoria |Image |
     |Motobomba Honda 2|Liviana y compacta bomba serie WB, facil arranque y solda reistencia|   20  | WB20XH | HONDA | Agricola | Motobombas| C:\Users\Ana\Downloads\maquinaria_3.jpg |
+
+  Scenario Outline: click on editIcon on machineries page
+    Given 'Machineries Page' page is loaded
+    And redirect to 'Machinery' page
+    And fill "<newDescription>" click on 'edit button' and edit the description with
+
+   Examples:
+     | newDescription |
+     | Liviana y compacta bomba serie WB|
+
+  Scenario: click on deleteIcon on machineries page
+    Given 'Machineries Page' page is loaded
+    And redirect to 'Machinery' page
+    And 'deleteMachinary' of the machinaries list

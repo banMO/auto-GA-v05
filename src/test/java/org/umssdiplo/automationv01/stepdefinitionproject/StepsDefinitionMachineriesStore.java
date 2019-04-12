@@ -36,4 +36,14 @@ public class StepsDefinitionMachineriesStore {
         Machinery machinery = new Machinery(name, description,  stock, modelo, marca, type, image, category);
         home.setAllFields(machinery);
     }
+
+    @And("^'deleteMachinary' of tha machinaries list$")
+    public void deletemachinaryOfThaMachinariesList() {
+        home.clickDeleteIcon();
+    }
+
+    @And("^fill \"([^\"]*)\" click on 'edit button' and edit the description with$")
+    public void fillClickOnEditButtonAndEditTheDescriptionWith(String description) {
+
+    }
 }

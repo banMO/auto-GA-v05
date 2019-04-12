@@ -49,4 +49,9 @@ public class MachineryDialog extends BasePage {
         CommonEvents.setSelectValue(typeField, machinery.getType());
         CommonEvents.clickButton(saveButton);
     }
+
+    public void update(String descriptionValue) {
+        CommonEvents.setInputField(descriptionField, descriptionValue);
+        CommonEvents.clickButton(saveButton);
+    }
 }

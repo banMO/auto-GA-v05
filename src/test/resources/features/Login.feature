@@ -10,7 +10,17 @@ Feature: Login
     Given GET "/headers" postman endpoint is configured
     Then the status code should be 200
 
-  Scenario: POSTMAN- Pot using java-cucumber-restassure
-    Given POST "/post" postman endpoint is configured
-    Then the responde 'data' value is "diplomado testing"
+  Scenario Outline: POSTMAN- POST using java-cucumber-restassure
+    Given POST "<resourseEndpoint>" postman endpoint is configured with this body "<data>"
+    Then the response 'data' value is "<expectedResult>"
     And the status code should be 200
+    Examples:
+      |resourseEndpoint|       data      |  expectedResult   |
+      |     /post      |diplomado testing| diplomado testing |
+
+  Scenario Outline: POSTMAN- POST using java-cucumber-restassure with incorrect resource
+    Given POST "<resourseEndpoint>" postman endpoint is configured with this body "<data>"
+    Then the status code should be 404
+    Examples:
+      |resourseEndpoint|       data       |
+      |     /postt      |diplomado testing|

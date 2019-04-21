@@ -3,6 +3,7 @@ package org.umssdiplo.automationv01.stepdefinitionproject;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.umssdiplo.automationv01.core.customrestassure.HandleRequest;
@@ -25,15 +26,15 @@ public class PostManStepdefs {
         assertEquals(response.getStatusCode(), statusCode);
     }
 
-    @Then("^the responde 'data' value is \"([^\"]*)\"$")
-    public void theRespondeDataValueIs(String esperado) throws Throwable {
-        String actual = response.getDataValue();
-
-        Assert.assertEquals(esperado, actual);
+    @Then("^the response 'data' value is \"([^\"]*)\"$")
+    public void theResponseDataValueIs(String expectedResult) throws Throwable {
+        JsonPath responseJson = response.jsonPath();
+        String currentResult = responseJson.get("data");
+        Assert.assertEquals(expectedResult, currentResult);
     }
 
-    @Given("^POST \"([^\"]*)\" postman endpoint is configured$")
-    public void postPostmanEndpointIsConfigured(String arg0) throws Throwable {
-
+    @Given("^POST \"([^\"]*)\" postman endpoint is configured with this body \"([^\"]*)\"$")
+    public void postPostmanEndpointIsConfiguredWithThisBody(String resourceEndpoint, String databody) throws Throwable {
+        response = HandleRequest.post(resourceEndpoint, databody);
     }
 }

@@ -41,7 +41,7 @@ public class HandleRequest {
         return given()
                 .spec(REQUEST)
                 .contentType(ContentType.JSON)
-                .when()
+                .when().log().all()
                 .body(body)
                 .post(endpoint);
     }

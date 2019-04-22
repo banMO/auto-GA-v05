@@ -14,3 +14,11 @@ Feature: Login
     Given POST "/post" postman endpoint is configured
     Then the responde 'data' value is "diplomado testing"
     And the status code should be 200
+
+
+  Scenario: Puma home page store
+    Given 'Puma Home' page is loaded
+    And click on 'Hombre option'
+    And click on 'futbol' option
+    
+

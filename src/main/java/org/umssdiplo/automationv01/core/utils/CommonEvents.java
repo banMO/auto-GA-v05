@@ -1,11 +1,9 @@
 package org.umssdiplo.automationv01.core.utils;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.umssdiplo.automationv01.core.customwebdriver.ManageDriver;
 
 import java.util.List;
@@ -121,5 +119,30 @@ public class CommonEvents {
         Actions action = new Actions(ManageDriver.getInstance().getWebDriver());
         ManageDriver.getInstance().getWebDriverWait().until(ExpectedConditions.elementToBeClickable(webElement));
         action.moveToElement(webElement).perform();
+    }
+
+    public static void forceWait(int milliseconds){
+        try{
+            Thread.sleep(milliseconds);
+        }catch (Exception e){
+            e.fillInStackTrace();
+        }
+    }
+
+    public static void setSelectValue(WebElement webElement, String content) {
+        WebDriverWait waitDriver = ManageDriver.getInstance().getWebDriverWait();
+        WebDriver webDriver = ManageDriver.getInstance().getWebDriver();
+
+        waitDriver.until(ExpectedConditions.visibilityOf(webElement));
+        webElement.click();
+
+        WebElement selectItem = webDriver.findElement(By.xpath(
+                "//button[contains(text(),'" + content +"')]"));
+        waitDriver.until(ExpectedConditions.visibilityOf(selectItem));
+        selectItem.click();
+    }
+
+    public static void waitMenuVisible(WebElement menuElement) {
+        ManageDriver.getInstance().getWebDriverWait().until(ExpectedConditions.visibilityOf(menuElement));
     }
 }

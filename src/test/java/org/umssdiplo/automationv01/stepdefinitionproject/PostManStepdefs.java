@@ -18,7 +18,6 @@ import static org.testng.Assert.assertEquals;
  */
 public class PostManStepdefs {
     private Response response;
-    private Home home;
 
     @Given("^GET \"([^\"]*)\" postman endpoint is configured$")
     public void getPostmanEndpointIsConfigured(String headerEndpoint) throws Throwable {
@@ -42,18 +41,4 @@ public class PostManStepdefs {
 
     }
 
-    @Given("^'Puma Home' page is loaded$")
-    public void pumaHomePageIsLoaded() {
-        home = LoadPage.homePage();
-    }
-
-    @And("^click on 'Hombre option'$")
-    public void clickOnHombreOption() {
-        home.clickHomeOption();
-    }
-
-    @And("^click on 'futbol' option$")
-    public void clickOnFutbolOption() {
-        home.clickElement();
-    }
 }
